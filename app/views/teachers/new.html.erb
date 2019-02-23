@@ -1,0 +1,10 @@
+<h1> Cadastro de Professor </h1>
+<%= form_for @teacher do |f| %>
+<p><%= f.label :name, 'Nome' %></p>
+<p><%= f.text_field :name %></p>
+<p><%= f.label :phone, 'Telefone' %></p>
+<p><%= f.telephone_field :phone %></p>
+<p><%= f.label :email, 'E-mail' %></p>
+<p><%= f.text_field :email %></p>
+<p><%= f.submit 'Enviar' %></p>
+<% end %>
