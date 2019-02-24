@@ -1,3 +1,10 @@
-<h1> Welcome to the school system </h1>
+<h1> Bem vindo ao sistema da escola</h1>
 
 <p><%= link_to  "Cadastrar professor", new_teacher_path %></p>
+<p><%= link_to  "Cadastrar aluno", new_student_path %></p>
+<p><%= link_to  "Gerar cartão", new_card_path %></p>
+
+<br>
+<% @students.each do |student| %>
+ <p><%= link_to "#{student.name}", student_path(student.id) %> || <%= student.email %> ||[<%= link_to 'Excluir', student_path(student.id), method: :delete , data: {confirm: 'Excluir aluno?'}%>][<%= link_to  "Editar", edit_student_path(student.id) %>] </p>
+<% end %>

@@ -6,8 +6,12 @@ class TeachersController < ApplicationController
 
   def create
     @teacher = Teacher.new(teacher_params)
-    @teacher.save
-    redirect_to @teacher
+    if @teacher.save
+      redirect_to @teacher
+    else
+      flash[:alert] = 'Você deve preencher o campo Nome'
+      render :new
+    end
   end
 
   def show

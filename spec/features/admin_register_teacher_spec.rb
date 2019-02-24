@@ -19,12 +19,12 @@ feature 'Admin register new teacher' do
   scenario 'and must fill name' do
     visit root_path
     click_on 'Cadastrar professor'
-    fill_in 'Name', with: ''
+    fill_in 'Nome', with: ''
     fill_in 'Telefone', with: ''
     fill_in 'E-mail', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content('Você deve preencher o campo nome') 
+    expect(page).to have_content('Você deve preencher o campo Nome') 
   end
 
 end

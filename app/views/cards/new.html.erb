@@ -1,0 +1,11 @@
+<h1>Gerar novo cartão</h1>
+<%= flash[:alert] %>
+<%= form_for @card do |f|%>
+  <p><%= f.label :student_id, 'Aluno' %></p>
+  <p><%= f.collection_select :student_id, @students, :id, :name %></p>
+  <p><%= f.label :price, 'Valor' %></p>
+  <p><%= f.number_field :price %></p>
+  <p><%= f.label :classes, 'Quantidade de aulas'%></p>
+  <p><%= f.number_field :classes %></p>
+  <p><%= f.submit 'Enviar' %>
+<%end%>
