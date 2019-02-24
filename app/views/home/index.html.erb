@@ -5,6 +5,13 @@
 <p><%= link_to  "Gerar cartão", new_card_path %></p>
 
 <br>
+<h1>Alunos</h1>
 <% @students.each do |student| %>
  <p><%= link_to "#{student.name}", student_path(student.id) %> || <%= student.email %> ||[<%= link_to 'Excluir', student_path(student.id), method: :delete , data: {confirm: 'Excluir aluno?'}%>][<%= link_to  "Editar", edit_student_path(student.id) %>] </p>
 <% end %>
+
+<br>
+<h1>Professores</h1>
+<% @teachers.each do |teacher|%>
+  <p><%= link_to  "#{teacher.name}", teacher_path(teacher.id) %></p>
+<%end%>
