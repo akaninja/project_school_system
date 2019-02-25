@@ -1,0 +1,13 @@
+<h1> Editar de Aluno </h1>
+<%= flash[:alert] %>
+<%= form_for @student do |f| %>
+<p><%= f.label :name, 'Nome' %></p>
+<p><%= f.text_field :name %></p>
+<p><%= f.label :phone, 'Telefone' %></p>
+<p><%= f.telephone_field :phone %></p>
+<p><%= f.label :email, 'E-mail' %></p>
+<p><%= f.text_field :email %></p>
+<p><%= f.label :photo, 'Foto' %></p>
+<p><%= f.file_field :photo %></p>
+<p><%= f.submit 'Enviar' %></p>
+<% end %>

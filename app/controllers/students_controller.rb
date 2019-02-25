@@ -18,6 +18,20 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  def edit
+    @student = Student.find(params[:id])
+  end
+
+  def update
+    @student = Student.find(params[:id])
+    if @student.update(student_params)
+      redirect_to @student
+    else
+      flash[:alert] = "Não foi possível salvar alterações"
+      render :edit
+    end
+  end
+
   def destroy
     @student = Student.find(params[:id])
     @student.destroy

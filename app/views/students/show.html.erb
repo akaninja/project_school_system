@@ -9,4 +9,5 @@
 <p><%= @student.phone %> </p>
 <p><%= @student.email %> </p> 
 <% end %>
-
+<p>[<%= link_to  "Editar", edit_student_path %>] || [<%= link_to 'Excluir', student_path, method: :delete, data: {confirm: 'Excluir aluno?'} %>]</p>
+<p>[<%= link_to 'Voltar', root_path %>]</p>

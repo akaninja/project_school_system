@@ -20,8 +20,8 @@ feature 'User register new card for a student' do
   end
 
   scenario 'and must fill all fields' do
-    Student.create(name:'André K.', phone: '99999999', email: 'kanamura@gmail.com')
-    Student.create(name:'João', phone: '99999999', email: 'joao@gmail.com')
+    Student.create(name:'André', phone: '99999999', email: 'kanamura@gmail.com')
+    Student.create(name:'João B.', phone: '99999999', email: 'joao@gmail.com')
 
     visit root_path
     click_on 'Gerar cartão'

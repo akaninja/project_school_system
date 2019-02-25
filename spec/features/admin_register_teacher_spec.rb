@@ -9,7 +9,6 @@ feature 'Admin register new teacher' do
     fill_in 'E-mail', with: 'kanamura@gmail.com'
     click_on 'Enviar'
 
-    # Na página do professor, onde vai ser possível editar os dados e excluir o cadastro.
     expect(page).to have_css('h1', text: 'André Kanamura')
     expect(page).to have_css('h2', text: 'Detalhes:')
     expect(page).to have_css('p', text: '993811089')
