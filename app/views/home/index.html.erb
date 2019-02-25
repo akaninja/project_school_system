@@ -5,6 +5,16 @@
 <p><%= link_to  "Gerar cartão", new_card_path %></p>
 
 <br>
+
+<%= form_tag root_path, method: 'get' do %>
+<%= label_tag :search_student, 'Buscar aluno' %>
+<%= text_field_tag :search_student, params[:search_student]%>
+<%= submit_tag 'Enviar' %>
+<% end %>
+
+<%= flash[:alert] %>
+
+<br>
 <h1>Alunos</h1>
 <% @students.each do |student| %>
  <p><%= link_to "#{student.name}", student_path(student.id) %> || <%= student.email %> ||[<%= link_to 'Excluir', student_path(student.id), method: :delete , data: {confirm: 'Excluir aluno?'}%>][<%= link_to  "Editar", edit_student_path(student.id) %>] </p>
