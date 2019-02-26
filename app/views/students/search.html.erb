@@ -1,0 +1,7 @@
+<h1>Resultados da busca</h1>
+<%= flash[:alert] %>
+
+<% @students_found.each do |student| %>
+<h2><%= student.name %></h2>
+<p><%= student.email%> | <%= student.phone %></p>
+<%end%>

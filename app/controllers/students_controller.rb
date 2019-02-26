@@ -38,6 +38,27 @@ class StudentsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    # @students = Student.where("name like ? OR email like ?", params[:search_student], params[:search_student])
+    # if @students.empty?
+    #   flash[:alert] = 'Nenhum resultado encontrado'
+    # end
+
+    @students = Student.all
+    @students_found = []
+    @students.each do |student|
+      if student.name.downcase.include? params[:search_student].downcase
+        @students_found << student
+      elsif student.email.downcase.include? params[:search_student].downcase
+          @students_found << student
+      end
+      if @students_found.empty?
+        flash[:alert] = 'Nenhum resultado encontrado'
+      end
+    end
+
+  end
+
   private 
   def student_params
     params.require(:student).permit(:name, :phone, :email, :photo)

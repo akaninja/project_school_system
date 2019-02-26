@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <%= form_tag search_students_path, method: 'get' do %>
+      <%= label_tag :search_student, 'Buscar aluno' %>
+      <%= text_field_tag :search_student%>
+      <%= submit_tag 'Enviar aluno' %>
+    <% end %>
+    <p><%= flash[:alert_student] %></p>
     <%= yield %>
   </body>
 </html>
