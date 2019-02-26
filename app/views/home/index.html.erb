@@ -10,7 +10,16 @@
 <% @students.reverse_each do |student| %>
   <% counter = counter + 1 %>
   <% if counter <= 6 %>
-    <p><%= link_to "#{student.name}", student_path(student.id) %> || <%= student.email %> || [<%= link_to 'Excluir', student_path(student.id), method: :delete , data: {confirm: 'Excluir aluno?'}%>] [<%= link_to  "Editar", edit_student_path(student.id) %>] </p>
+    <p> 
+    <% if student.favorite == true %>
+     <%= image_tag("star.png", :alt => "favicon") %>
+    <%end%>
+    <%= link_to "#{student.name}", student_path(student.id) %> || <%= student.email %> || [<%= link_to 'Excluir', student_path(student.id), method: :delete , data: {confirm: 'Excluir aluno?'}%>] [<%= link_to  'Editar', edit_student_path(student.id) %>] [<% if student.favorite == false %>
+      <%= link_to 'Favoritar', favorite_student_path(student.id) %>
+     <% elsif student.favorite == true %>
+      <%= link_to 'Desfavoritar', favorite_student_path(student.id), method: :delete %>
+     <% end %>
+    ]</p>
   <% end %>
 <% end %>
 <p> Mostrando últimos alunos cadastrados </p>

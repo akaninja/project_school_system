@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :teachers
   resources :students do 
     get 'search', on: :collection
+    get 'favorite', on: :member
+    delete 'favorite', to: "students#unfavorite", on: :member
   end 
   resources :cards, only: [:show, :new, :create]
 end

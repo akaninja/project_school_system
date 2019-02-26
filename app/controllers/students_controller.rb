@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
+    @student.favorite = false
     if @student.save
       redirect_to @student
     else 
@@ -63,8 +64,20 @@ class StudentsController < ApplicationController
 
   end
 
+  def favorite
+    @student = Student.find(params[:id])
+    @student.update(favorite: true)
+    redirect_to root_path
+  end
+
+  def unfavorite
+    @student = Student.find(params[:id])
+    @student.update(favorite: false)
+    redirect_to root_path
+  end
+
   private 
   def student_params
-    params.require(:student).permit(:name, :phone, :email, :photo)
+    params.require(:student).permit(:name, :phone, :email, :photo, :favorite)
   end
 end
