@@ -1,0 +1,3 @@
+<% @students.each_with_index do |student, index| %>
+    <p> <%= "#{index + 1}: " %> <%= link_to "#{student.name}", student_path(student.id) %> || <%= student.email %> || [<%= link_to 'Excluir', student_path(student.id), method: :delete , data: {confirm: 'Excluir aluno?'}%>] [<%= link_to  "Editar", edit_student_path(student.id) %>] </p>
+<% end %>
