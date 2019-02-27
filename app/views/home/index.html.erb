@@ -4,23 +4,49 @@
 <p><%= link_to  "Cadastrar aluno", new_student_path %></p>
 <p><%= link_to  "Gerar cartão", new_card_path %></p>
 
-<br>
-<h1>Alunos</h1>
+
+<div id="alunos_destaque">
+<h1>Alunos em destaque  <%= image_tag("star.png", :alt => "favicon") %> </h1>
+<% counter_fav = 0 %>
+<% @students.each do |student| %>
+  <% counter_fav = counter_fav + 1 %>
+  <% if student.favorite? && counter_fav <= 6 %>
+  <p>
+    <%= link_to "#{student.name}", student_path(student.id) %> || 
+    <%= student.email %> || 
+    [<%= link_to 'Excluir', student_path(student.id), method: :delete,
+     data: {confirm: 'Excluir aluno?'}%>] 
+    [<%= link_to  'Editar', edit_student_path(student.id) %>] 
+    [<% if student.favorite? %>
+     
+      <%= link_to 'Desfavoritar', favorite_student_path(student.id), method: :delete %>
+     <% else %>
+      <%= link_to 'Favoritar', favorite_student_path(student.id) %>
+     <% end %>]
+  </p>
+  <%end%>
+<%end%>
+</div>
+
+<h1>Últimos alunos cadastrados</h1>
 <% counter = 0 %>
 <% @students.reverse_each do |student| %>
   <% counter = counter + 1 %>
-  <% if counter <= 6 %>
+  <% if !student.favorite? && counter <= 6 %>
     <p> 
-    <% if student.favorite == true %>
-     <%= image_tag("star.png", :alt => "favicon") %>
-    <%end%>
-    <%= link_to "#{student.name}", student_path(student.id) %> || <%= student.email %> || [<%= link_to 'Excluir', student_path(student.id), method: :delete , data: {confirm: 'Excluir aluno?'}%>] [<%= link_to  'Editar', edit_student_path(student.id) %>] [<% if student.favorite == false %>
-      <%= link_to 'Favoritar', favorite_student_path(student.id) %>
-     <% elsif student.favorite == true %>
+    <%= link_to "#{student.name}", student_path(student.id) %> || 
+    <%= student.email %> || 
+    [<%= link_to 'Excluir', student_path(student.id), method: :delete,
+     data: {confirm: 'Excluir aluno?'}%>] 
+     [<%= link_to  'Editar', edit_student_path(student.id) %>] 
+    [<% if student.favorite? %>
+      <%= image_tag("star.png", :alt => "favicon") %>
       <%= link_to 'Desfavoritar', favorite_student_path(student.id), method: :delete %>
-     <% end %>
-    ]</p>
-  <% end %>
+     <% else %>
+      <%= link_to 'Favoritar', favorite_student_path(student.id) %>
+     <% end %>]
+    </p>
+  <% end %> 
 <% end %>
-<p> Mostrando últimos alunos cadastrados </p>
+<br>
 <p> <%= link_to  "Todos os alunos", students_path %> </p>
