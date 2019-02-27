@@ -17,8 +17,8 @@
     [<%= link_to 'Excluir', student_path(student.id), method: :delete,
      data: {confirm: 'Excluir aluno?'}%>] 
     [<%= link_to  'Editar', edit_student_path(student.id) %>] 
+    #lógica para favoritar e desfavoritar
     [<% if student.favorite? %>
-     
       <%= link_to 'Desfavoritar', favorite_student_path(student.id), method: :delete %>
      <% else %>
       <%= link_to 'Favoritar', favorite_student_path(student.id) %>
@@ -28,6 +28,7 @@
 <%end%>
 </div>
 
+<div id="ultimos_alunos">
 <h1>Últimos alunos cadastrados</h1>
 <% counter = 0 %>
 <% @students.reverse_each do |student| %>
@@ -39,6 +40,7 @@
     [<%= link_to 'Excluir', student_path(student.id), method: :delete,
      data: {confirm: 'Excluir aluno?'}%>] 
      [<%= link_to  'Editar', edit_student_path(student.id) %>] 
+     #lógica para favoritar e desfavoritar
     [<% if student.favorite? %>
       <%= image_tag("star.png", :alt => "favicon") %>
       <%= link_to 'Desfavoritar', favorite_student_path(student.id), method: :delete %>
@@ -48,5 +50,6 @@
     </p>
   <% end %> 
 <% end %>
+</div>
 <br>
 <p> <%= link_to  "Todos os alunos", students_path %> </p>
