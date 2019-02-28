@@ -2,10 +2,15 @@ require 'rails_helper'
 
 feature 'User register new card for a student' do
   scenario 'successfully' do
-    Student.create(name:'André K.', phone: '99999999', email: 'kanamura@gmail.com')
-    Student.create(name:'João', phone: '99999999', email: 'joao@gmail.com')
-
+    user = User.create(email: 'andre@aol.com.br', password: 'pipoca123')
+    Student.create(name:'André K.', phone: '99999999', email: 'kanamura@gmail.com', user: user)
+    Student.create(name:'João', phone: '99999999', email: 'joao@gmail.com', user: user)
+    
     visit root_path
+    click_on 'Entrar'
+    fill_in 'E-mail', with: 'andre@aol.com.br'
+    fill_in 'Senha', with: 'pipoca123'
+    click_on 'Enviar'
     click_on 'Gerar cartão'
     select 'André K.', from: 'Aluno'
     fill_in 'Valor', with: 40.0
@@ -20,10 +25,15 @@ feature 'User register new card for a student' do
   end
 
   scenario 'and must fill all fields' do
-    Student.create(name:'André', phone: '99999999', email: 'kanamura@gmail.com')
-    Student.create(name:'João B.', phone: '99999999', email: 'joao@gmail.com')
-
+    user = User.create(email: 'andre@aol.com.br', password: 'pipoca123')
+    Student.create(name:'André K.', phone: '99999999', email: 'kanamura@gmail.com', user: user)
+    Student.create(name:'João', phone: '99999999', email: 'joao@gmail.com', user: user)
+    
     visit root_path
+    click_on 'Entrar'
+    fill_in 'E-mail', with: 'andre@aol.com.br'
+    fill_in 'Senha', with: 'pipoca123'
+    click_on 'Enviar'
     click_on 'Gerar cartão'
     #select '', from: 'Aluno'
     fill_in 'Valor', with: ''

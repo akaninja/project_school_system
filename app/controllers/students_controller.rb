@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
-  
+  before_action :authenticate_user!, only: [:edit, :new, :create, :update, :destroy, :favorite, :unfavorite, :my_students]
+
   def index
     @students = Student.all
   end
@@ -10,6 +11,7 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
+    @student.user = current_user
     @student.favorite = false
     if @student.save
       redirect_to @student
@@ -21,6 +23,9 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+    if !@student.user == current_user
+      render :root_path
+    end
   end
 
   def edit
@@ -62,8 +67,12 @@ class StudentsController < ApplicationController
     redirect_to root_path
   end
 
+  def my_students
+    @my_students = current_user.students
+  end
+
   private 
   def student_params
-    params.require(:student).permit(:name, :phone, :email, :photo, :favorite)
+    params.require(:student).permit(:name, :phone, :email, :photo, :favorite, :user)
   end
 end

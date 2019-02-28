@@ -1,0 +1,8 @@
+<h1>Meus alunos</h1>  
+<br>
+<% @my_students.each do |student| %>
+<h2><%= student.name %></h2>
+<p><%= student.email %> || <%= student.phone %></p>
+<% end %>
+<br>
+<%= link_to  "Voltar", root_path %>

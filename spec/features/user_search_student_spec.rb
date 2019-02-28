@@ -2,9 +2,10 @@ require 'rails_helper'
 
 feature 'User searches for a student' do
   scenario 'successfully' do
-    Student.create(name: 'Luiz Geraldo', phone: '8938344', email: 'luiz@uol.com.br')
-    Student.create(name: 'Pedro Jaime', phone: '2938523', email: 'pedro@gmail.com')
-    Student.create(name: 'Luiz Henrique', phone: '29388048', email: 'lhenrique@gmail.com')
+    user = User.create(email: 'andre@aol.com.br', password: 'pipoca123')
+    Student.create(name: 'Luiz Geraldo', phone: '8938344', email: 'luiz@uol.com.br', user: user)
+    Student.create(name: 'Pedro Jaime', phone: '2938523', email: 'pedro@gmail.com', user: user)
+    Student.create(name: 'Luiz Henrique', phone: '29388048', email: 'lhenrique@gmail.com', user: user)
 
     visit root_path
     fill_in 'Buscar aluno', with: 'Luiz'
@@ -17,8 +18,11 @@ feature 'User searches for a student' do
   end
   
   scenario 'and finds no matches' do
-    Student.create(name: 'Pedro Jaime', phone: '2938523', email: 'pedro@gmail.com')
-    Student.create(name: 'Luiz Henrique', phone: '29388048', email: 'lhenrique@gmail.com')
+    user = User.create(email: 'andre@aol.com.br', password: 'pipoca123')
+    Student.create(name: 'Luiz Geraldo', phone: '8938344', email: 'luiz@uol.com.br', user: user)
+    Student.create(name: 'Pedro Jaime', phone: '2938523', email: 'pedro@gmail.com', user: user)
+    Student.create(name: 'Luiz Henrique', phone: '29388048', email: 'lhenrique@gmail.com', user: user)
+
 
     visit root_path
     fill_in 'Buscar aluno', with: 'José'
@@ -28,8 +32,11 @@ feature 'User searches for a student' do
   end
 
   scenario 'by email successfully' do
-    Student.create(name: 'Luiz Geraldo', phone: '8938344', email: 'luiz@uol.com.br')
-    Student.create(name: 'Pedro Jaime', phone: '2938523', email: 'pedro@gmail.com')
+    user = User.create(email: 'andre@aol.com.br', password: 'pipoca123')
+    Student.create(name: 'Luiz Geraldo', phone: '8938344', email: 'luiz@uol.com.br', user: user)
+    Student.create(name: 'Pedro Jaime', phone: '2938523', email: 'pedro@gmail.com', user: user)
+    Student.create(name: 'Luiz Henrique', phone: '29388048', email: 'lhenrique@gmail.com', user: user)
+
 
     visit root_path
     fill_in 'Buscar aluno', with: 'luiz@uol.com.br'

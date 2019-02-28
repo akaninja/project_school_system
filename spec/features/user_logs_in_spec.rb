@@ -15,6 +15,7 @@ feature 'User logs in' do
     expect(page).to have_content('Bem vindo, andre@aol.com.br')
     expect(page).to have_link('Sair')
     expect(page).not_to have_link('Entrar')
+    
   end
 
   scenario 'and enters wrong user or password' do
@@ -23,11 +24,30 @@ feature 'User logs in' do
  
     visit root_path
     click_on 'Entrar'
-    fill_in 'E-mail', with: 'paulo'
-    fill_in 'Senha', with: 'ofwowfo'
+    fill_in 'E-mail', with: 'paulo@gmail.com'
+    fill_in 'Senha', with: '12345678'
     click_on 'Enviar'
     
     expect(page).to have_link('Entrar')
     expect(page).to have_content('Invalid Email or password.')
+    
   end
+
+  scenario 'successfully and logs out' do
+    user = User.create(email: 'paulo@uol.com.br', password: 
+                '098765')
+    
+    visit root_path
+    click_on 'Entrar'
+    fill_in 'E-mail', with: 'paulo@uol.com.br'
+    fill_in 'Senha', with: '098765'
+    click_on 'Enviar'
+    
+    click_on 'Sair'
+
+    expect(page).to have_link('Entrar')
+    expect(page).not_to have_link('Sair')
+    
+  end
+
 end

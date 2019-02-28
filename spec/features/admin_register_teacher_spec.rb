@@ -2,7 +2,13 @@ require 'rails_helper'
 
 feature 'Admin register new teacher' do 
   scenario 'successfully' do
+    user = User.create(email: 'andre@aol.com.br', password: 'pipoca123')
+
     visit root_path
+    click_on 'Entrar'
+    fill_in 'E-mail', with: 'andre@aol.com.br'
+    fill_in 'Senha', with: 'pipoca123'
+    click_on 'Enviar'
     click_on 'Cadastrar professor'
     fill_in 'Nome', with: 'André Kanamura'
     fill_in 'Telefone', with: '993811089'
@@ -16,7 +22,13 @@ feature 'Admin register new teacher' do
   end
 
   scenario 'and must fill name' do
+      user = User.create(email: 'andre@aol.com.br', password: 'pipoca123')
+
     visit root_path
+    click_on 'Entrar'
+    fill_in 'E-mail', with: 'andre@aol.com.br'
+    fill_in 'Senha', with: 'pipoca123'
+    click_on 'Enviar'
     click_on 'Cadastrar professor'
     fill_in 'Nome', with: ''
     fill_in 'Telefone', with: ''
