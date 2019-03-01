@@ -4,12 +4,15 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get 'my_students', to: "students#my_students" 
-
+  resources :lists
   resources :teachers
   resources :students do 
     get 'search', on: :collection
-    get 'favorite', on: :member
-    delete 'favorite', to: "students#unfavorite", on: :member
+    member do
+      get 'favorite'
+      delete 'favorite', to: "students#unfavorite"
+      post 'add_list'
+    end
   end 
   resources :cards, only: [:show, :new, :create]
 end

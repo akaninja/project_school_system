@@ -1,0 +1,11 @@
+<h1>Minhas listas</h1>
+
+<%= form_tag lists_path, method: 'post' do %>
+  <%= label_tag :title, 'Título' %>
+  <%= text_field_tag :title %>
+  <%= submit_tag 'Criar lista'%>
+<% end %>
+
+<% @lists.each do |list| %>
+  <h2><%= list.title %></h2>
+<% end %>

@@ -56,6 +56,7 @@ feature 'User edits student info' do
 
     expect(page).not_to have_content('Excluir')
     expect(page).not_to have_content('Editar')
+    expect(page).not_to have_content('Lista')
   
   end
 
