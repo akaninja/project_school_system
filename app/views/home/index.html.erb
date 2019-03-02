@@ -39,7 +39,7 @@
     <p> 
     <%= link_to "#{student.name}", student_path(student.id) %> || 
     <%= student.email %> ||
-    <% if user_signed_in? %>
+    <% if user_signed_in? && current_user == student.user %>
       <%= link_to 'Excluir', student_path(student.id), method: :delete,
       data: {confirm: 'Excluir aluno?'}%>
       <%= link_to  'Editar', edit_student_path(student.id) %> 

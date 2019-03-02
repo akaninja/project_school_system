@@ -23,15 +23,15 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    if @student.user == current_user 
-      @user_lists = current_user.lists
-    else 
-      redirect_to root_path
-    end
+    @user_lists = current_user.lists
   end
 
-  def edit
+  def edit  
     @student = Student.find(params[:id])
+    if current_user != @student.user
+      redirect_to root_path
+    end
+
   end
 
   def update
