@@ -23,7 +23,9 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    @user_lists = current_user.lists
+    if user_signed_in?
+      @user_lists = current_user.lists
+    end
   end
 
   def edit  

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get 'my_students', to: "students#my_students" 
+  resources :cards
   resources :lists
   resources :teachers
   resources :students do 

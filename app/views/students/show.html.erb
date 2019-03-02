@@ -13,11 +13,12 @@
   <p>[<%= link_to  "Editar", edit_student_path %>] || [<%= link_to 'Excluir', student_path, method: :delete, data: {confirm: 'Excluir aluno?'} %>] </p>
   <% end %>
 
-
-  <%= form_tag add_list_student_path(@student), method: 'post' do %>
-    <%= label_tag :list_id, "Lista" %>
-    <%= select_tag :list_id, options_from_collection_for_select(@user_lists, :id, :title) %>
-    <%= submit_tag 'Adicionar'%>
+  <% if user_signed_in? %>
+    <%= form_tag add_list_student_path(@student), method: 'post' do %>
+      <%= label_tag :list_id, "Lista" %>
+      <%= select_tag :list_id, options_from_collection_for_select(@user_lists, :id, :title) %>
+      <%= submit_tag 'Adicionar'%>
+    <% end %>
   <% end %>
-
+  
   <p>[<%= link_to 'Voltar', root_path %>]</p>

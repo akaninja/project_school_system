@@ -13,7 +13,9 @@
     <nav>
       <% if user_signed_in? %>
         <p><%= 'Bem vindo, ' + current_user.email %></p>
-        <p><%= link_to  'Sair', destroy_user_session_path, method: :delete %> 
+        <p> 
+            <%= link_to  "HOME", root_path %>
+            <%= link_to  'Sair', destroy_user_session_path, method: :delete %> 
             <%= link_to  "Meus alunos", my_students_path %>
             <%= link_to  "Minhas listas", lists_path %>
         </p>
