@@ -1,0 +1,7 @@
+<h1>Cartões</h1>
+<% @cards.each do |card| %>
+<h2>Cartão #<%= card.id %></h2>
+<p>Aluno: <%= card.student.name %></p>
+<% end %>
+
+<%= link_to  "Voltar", root_path %>

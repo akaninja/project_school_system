@@ -14,6 +14,7 @@ feature 'User views all created cards' do
     card3 = Card.create(price: 44.0, classes: 36, student: student3)
     card4 = Card.create(price: 23.0, classes: 42, student: student4)
 
+    login_as user1, scope: :user
     visit root_path
     click_on 'Cartões'
 

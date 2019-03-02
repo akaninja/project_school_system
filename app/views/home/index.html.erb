@@ -1,9 +1,9 @@
 <h1> Bem vindo ao sistema da escola</h1>
 
 <% if user_signed_in? %>
-<p><%= link_to  "Cadastrar professor", new_teacher_path %></p>
-<p><%= link_to  "Cadastrar aluno", new_student_path %></p>
-<p><%= link_to  "Gerar cartão", new_card_path %></p>
+  <p><%= link_to  "Cadastrar professor", new_teacher_path %></p>
+  <p><%= link_to  "Cadastrar aluno", new_student_path %></p>
+  <p><%= link_to  "Gerar cartão", new_card_path %></p>
 <% end %>
 
 <div id="alunos_destaque">

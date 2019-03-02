@@ -18,6 +18,7 @@
             <%= link_to  'Sair', destroy_user_session_path, method: :delete %> 
             <%= link_to  "Meus alunos", my_students_path %>
             <%= link_to  "Minhas listas", lists_path %>
+            <%= link_to  "Cartões", cards_path %>
         </p>
       <% else %>
         <p><%= link_to  "Entrar", user_session_path %></p>
